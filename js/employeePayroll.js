@@ -1,20 +1,20 @@
 let employeeArr = [];
 
+let flag = true;
+
 class EmployeePayrollData {
         
-    //constructor
-    constructor(...params) {
-        this.name = params[0];
-        this.salary = params[1];
-        this.gender = params[2];
-        this.startDate = params[3];
-        this.departments = params[4];
-        this.notes = params[5];
-    }
+    
     //getter and setter
     get name() { return this._name; }
     set name(name) {
-        this._name = name;
+        let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+        if(nameRegex.test(name))
+            this._name = name;
+        else{
+            flag = false
+            alert('Name is Incorrect! please enter correct one');
+        } 
     }
     get salary() { return this._salary; }
     set salary(salary) {
@@ -26,7 +26,13 @@ class EmployeePayrollData {
     }
     get startDate() { return this._startDate; }
     set startDate(startDate) {
-        this._startDate = startDate; 
+        let thirtyDaysInMiliSec = 30*24*60*60*1000;
+        if(startDate <= new Date() &&  Date.now()-startDate < thirtyDaysInMiliSec)
+            this._startDate = startDate; 
+        else{
+            flag = false;
+            alert('Invalid date');
+        }
     }
     get departments() { return this._departments}
     set departments(departments){
@@ -64,7 +70,21 @@ function save(){
     const date = new Date(day.value+"/"+month.value+"/"+year.value);
     const notes = document.querySelector('#notes'); 
 
-    employeeArr.push(new EmployeePayrollData(name.value,salary.value,gender,date,departments,notes.value));
+    let empObject = new EmployeePayrollData();
+    
+    flag = true;
+    //set values
+    empObject.name = name.value;
+    empObject.salary = salary.value;
+    empObject.gender = gender;
+    empObject.startDate = date;
+    empObject.departments = departments;
+    empObject.notes = notes.value;
+    // if no error then only add object.
+    if(flag) {
+        employeeArr.push(empObject);
+        alert('Successfully added employee');
+    } 
 
     console.log(employeeArr);
 }
