@@ -2,10 +2,10 @@ class EmployeePayrollData {
     //getter and setter
     get name() { return this._name; }
     set name(name) {
-        let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+        let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z]{2,}$');
         if(nameRegex.test(name))
             this._name = name;
-        else throw 'NAme is Incorrect';
+        else throw 'Name is Incorrect';
     }
     get profilePic() { return this._profilePic; }
     set profilePic(profilePic) {
