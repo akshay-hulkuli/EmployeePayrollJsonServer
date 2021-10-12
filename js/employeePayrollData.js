@@ -30,7 +30,7 @@ class EmployeePayrollData {
     set departments(departments){
         this._departments = departments;
     }
-    get notes() { return notes}
+    get notes() { return this._notes}
     set notes(notes) {
         this._notes = notes;
     }
