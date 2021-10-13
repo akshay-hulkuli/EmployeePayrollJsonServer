@@ -253,3 +253,8 @@ error-output {
     font-style: italic;
     color: red;
 }
+
+.textarea{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
