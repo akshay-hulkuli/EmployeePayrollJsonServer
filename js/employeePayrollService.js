@@ -122,6 +122,7 @@ const resetForm = () => {
   setValue('#day','1');
   setValue('#month','January');
   setValue('#year','2020');
+  setTextValue('#salary-value',400000);
 }
 
 const unsetSelectedValues = (propertyValue) => {
